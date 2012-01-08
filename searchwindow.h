@@ -2,6 +2,9 @@
 #define SEARCHWINDOW_H
 
 #include <QWidget>
+#include <QPixmap>
+#include <QModelIndex>
+
 #include "movie.h"
 
 namespace Ui {
@@ -18,11 +21,16 @@ public:
     void showExpanded();
 
 public slots:
-    void addResultItems(QList<Movie> movies);
+    void setResults(QList<Movie> movies);
     void showNoResultsFound();
     
+private slots:
+    void on_listWidget_clicked(const QModelIndex &index);
+
 private:
     Ui::SearchWindow *ui;
+    void setWidgetsInitialState();
+
 };
 
 #endif // SEARCHWINDOW_H

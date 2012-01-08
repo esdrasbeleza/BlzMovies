@@ -51,7 +51,7 @@ void SearchMovie::parseReply() {
         QString imdbId;
         QString overview;
         QString posterUrlXml;
-        QString year;
+        QString released;
         QUrl posterUrl;
 
         query.setQuery(elementQuery + "/name/text()");
@@ -66,20 +66,24 @@ void SearchMovie::parseReply() {
         query.setQuery(elementQuery + "/overview/text()");
         query.evaluateTo(&overview);
 
-        query.setQuery(elementQuery + "/year/text()");
-        query.evaluateTo(&year);
+        query.setQuery(elementQuery + "/released/text()");
+        query.evaluateTo(&released);
 
         query.setQuery(elementQuery + "/images/image[@type=\"poster\" and @size=\"thumb\" and position() = 1]");
         query.evaluateTo(&posterUrlXml);
-        QDomDocument xmlDom;
-        xmlDom.setContent(posterUrlXml);
-        posterUrl = QUrl(xmlDom.toElement().attribute("url"));
 
-        Movie newMovie(theMdbId.toInt(), name);
-        newMovie.setImdbId(imdbId);
-        newMovie.setOverview(overview);
-        newMovie.setYear(year.toInt());
-        newMovie.setPosterUrl(posterUrl);
+        QDomDocument doc;
+        doc.setContent(posterUrlXml);
+        QDomNode node = doc.elementsByTagName("image").at(0);
+        posterUrl = QUrl(node.toElement().attribute("url").trimmed());
+
+        Movie newMovie(theMdbId.toInt(), name.trimmed());
+        newMovie.setImdbId(imdbId.trimmed());
+        newMovie.setOverview(overview.trimmed());
+        newMovie.setYear(released.split("-").at(0).toInt());
+        if (posterUrl.isValid()) {
+            newMovie.setPosterUrl(posterUrl);
+        }
 
         movieList.append(newMovie);
     }

@@ -27,16 +27,18 @@ QT += network \
       xmlpatterns
 SOURCES += main.cpp mainwindow.cpp \
     movie.cpp \
-    randommovie.cpp \
     searchmovie.cpp \
     searchwindow.cpp \
-    mainwidget.cpp
+    mainwidget.cpp \
+    pictureloader.cpp \
+    searchresult.cpp
 HEADERS += mainwindow.h \
     movie.h \
-    randommovie.h \
     searchmovie.h \
     searchwindow.h \
-    mainwidget.h
+    mainwidget.h \
+    pictureloader.h \
+    searchresult.h
 FORMS += mainwindow.ui \
     details.ui \
     searchwindow.ui \
@@ -49,3 +51,6 @@ qtcAddDeployment()
 DEFINES += THEMOVIEDB_KEY=\\\"8b0246355e819cf5dc82d9c1c4b27227\\\"
 
 OTHER_FILES +=
+
+RESOURCES += \
+    resources.qrc
