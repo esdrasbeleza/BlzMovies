@@ -1,16 +1,16 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
-#include <QObject>
+
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QPixmap>
 
-class Movie : public QObject
+class Movie
 {
-    Q_OBJECT
+
 public:
-    explicit Movie(int id, QString name, QObject *parent = 0);
+    explicit Movie(int id, QString name);
     void fetchInformation();
 
     int getId();

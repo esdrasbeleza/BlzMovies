@@ -15,13 +15,13 @@ public:
     
 signals:
     void noResults();
-    void hasResults(QList<Movie*>);
+    void hasResults(QList<Movie>);
 
 private:
     QUrl url;
     QString replyString;
     int resultNumber;
-    QList<Movie*> movieList;
+    QList<Movie> movieList;
 
     void parseReply();
 

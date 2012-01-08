@@ -2,9 +2,7 @@
 #include <QDomNode>
 #include <QXmlQuery>
 
-Movie::Movie(int id, QString name, QObject *parent) :
-    QObject(parent)
-{
+Movie::Movie(int id, QString name) {
     this->id = id;
     this->name = name;
 }

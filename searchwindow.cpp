@@ -1,38 +1,40 @@
 #include "searchwindow.h"
 #include "ui_searchwindow.h"
-#include "searchresultlistitem.h"
+#include "searchresultitem.h"
 
 SearchWindow::SearchWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SearchWindow)
 {
     ui->setupUi(this);
+    ui->resultsArea->setVisible(false);
+    ui->noResultsLabel->setVisible(false);
 }
+
 
 SearchWindow::~SearchWindow()
 {
     delete ui;
 }
 
-void SearchWindow::addResultItems(QList<Movie*> movies) {
-    foreach (Movie *movie, movies) {
-        SearchResultListItem *listItem = new SearchResultListItem(ui->resultListWidget);
-        listItem->setName(movie->getName());
-        listItem->setDetails(QString::number(movie->getYear()));
+void SearchWindow::addResultItems(QList<Movie> movies) {
+    qDebug("addResultItems!");
+    foreach (Movie movie, movies) {
+        SearchResultItem *searchResult = new SearchResultItem(this);
+        searchResult->setTitle(movie.getName());
+        searchResult->setInfo(QString::number(movie.getYear()));
 
         // TODO: fetch image
-
-        ui->resultListWidget->addItem(listItem);
+        ui->resultsVBox->addWidget(searchResult);
     }
+
+    ui->resultsArea->setVisible(true);
+    ui->noResultsLabel->setVisible(false);
+    ui->progressBar->setVisible(false);
 }
 
-void SearchWindow::showExpanded()
-{
-#if defined(Q_OS_SYMBIAN) || defined(Q_WS_SIMULATOR)
-    showFullScreen();
-#elif defined(Q_WS_MAEMO_5)
-    showMaximized();
-#else
-    show();
-#endif
+void SearchWindow::showNoResultsFound() {
+    ui->progressBar->setVisible(false);
+    ui->resultsArea->setVisible(false);
+    ui->noResultsLabel->setVisible(true);
 }

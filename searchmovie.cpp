@@ -25,14 +25,9 @@ void SearchMovie::search() {
 void SearchMovie::readReply(QNetworkReply *reply) {
     replyString = reply->readAll();
 
-    QString resultNumberFormattedAsString;
-
-    QXmlQuery query;
-    query.setFocus(replyString);
-    query.setQuery("/OpenSearchDescription/opensearch:totalResults/text()");
-    query.evaluateTo(&resultNumberFormattedAsString);
-
-    resultNumber = resultNumberFormattedAsString.toInt();
+    QDomDocument xmlDom;
+    xmlDom.setContent(replyString);
+    resultNumber = xmlDom.elementsByTagName("movies").at(0).toElement().elementsByTagName("movie").size();
 
     if (resultNumber == 0) {
         emit noResults();
@@ -46,7 +41,7 @@ void SearchMovie::parseReply() {
     QXmlQuery query;
     query.setFocus(replyString);
 
-    QList<Movie*> movieList;
+    QList<Movie> movieList;
 
     for (int i = 1; i <= resultNumber; i++) {
         QString elementQuery = "/OpenSearchDescription/movies/movie[" + QString::number(i) + "]";
@@ -80,14 +75,15 @@ void SearchMovie::parseReply() {
         xmlDom.setContent(posterUrlXml);
         posterUrl = QUrl(xmlDom.toElement().attribute("url"));
 
-        Movie *newMovie = new Movie(theMdbId.toInt(), name);
-        newMovie->setImdbId(imdbId);
-        newMovie->setOverview(overview);
-        newMovie->setYear(year.toInt());
-        newMovie->setPosterUrl(posterUrl);
+        Movie newMovie(theMdbId.toInt(), name);
+        newMovie.setImdbId(imdbId);
+        newMovie.setOverview(overview);
+        newMovie.setYear(year.toInt());
+        newMovie.setPosterUrl(posterUrl);
 
         movieList.append(newMovie);
     }
+    qDebug("Finished parsing movie list");
 
     emit hasResults(movieList);
 }

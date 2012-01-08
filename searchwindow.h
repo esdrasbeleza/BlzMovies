@@ -18,7 +18,8 @@ public:
     void showExpanded();
 
 public slots:
-    void addResultItems(QList<Movie *> movies);
+    void addResultItems(QList<Movie> movies);
+    void showNoResultsFound();
     
 private:
     Ui::SearchWindow *ui;

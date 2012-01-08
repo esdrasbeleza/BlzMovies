@@ -29,19 +29,21 @@ SOURCES += main.cpp mainwindow.cpp \
     movie.cpp \
     randommovie.cpp \
     searchmovie.cpp \
-    searchresultlistitem.cpp \
-    searchwindow.cpp
+    searchwindow.cpp \
+    mainwidget.cpp \
+    searchresultitem.cpp
 HEADERS += mainwindow.h \
     movie.h \
     randommovie.h \
     searchmovie.h \
-    searchresultlistitem.h \
-    searchwindow.h
+    searchwindow.h \
+    mainwidget.h \
+    searchresultitem.h
 FORMS += mainwindow.ui \
-    result_item.ui \
-    search_results.ui \
     details.ui \
-    searchwindow.ui
+    searchwindow.ui \
+    mainwidget.ui \
+    searchresultitem.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

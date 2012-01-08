@@ -2,11 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
-#include "movie.h"
-
-namespace Ui {
-    class MainWindow;
-}
+#include <QStackedWidget>
 
 class MainWindow : public QMainWindow
 {
@@ -27,19 +23,11 @@ public:
     void showExpanded();
 
 private slots:
-    void showMovieInfo(Movie *movie);
-
-
-    void on_submitSearchButton_clicked();
+    void addWidgetToStack(QWidget *widget);
 
 private:
-    Ui::MainWindow *ui;
-    void populateSearchComboBox();
-    void showProgressBar();
-    void hideProgressBar();
-    void showMoviePoster(Movie *movie);
-    void showMovieName(Movie *movie);
-    void fetchInformationAboutTheLastMovie();
+    QStackedWidget *stackedWidget;
+
 };
 
 #endif // MAINWINDOW_H

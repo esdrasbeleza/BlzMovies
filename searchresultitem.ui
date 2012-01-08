@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SearchResultListItem</class>
- <widget class="QWidget" name="SearchResultListItem">
+ <class>SearchResultItem</class>
+ <widget class="QWidget" name="SearchResultItem">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,16 +13,19 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
      <item>
-      <widget class="QLabel" name="image">
+      <widget class="QLabel" name="imageLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
-        <string>Loading image...</string>
+        <string>Image</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -30,12 +33,17 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="title">
+        <widget class="QLabel" name="nameLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
-           <pointsize>16</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -43,12 +51,18 @@
          <property name="text">
           <string>TextLabel</string>
          </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="details">
+        <widget class="QLabel" name="infoLabel">
          <property name="text">
           <string>TextLabel</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
