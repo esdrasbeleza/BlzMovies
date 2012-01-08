@@ -22,25 +22,16 @@
     </widget>
    </item>
    <item>
-    <widget class="QScrollArea" name="resultsArea">
-     <property name="widgetResizable">
-      <bool>true</bool>
+    <widget class="QListWidget" name="listWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>374</width>
-        <height>106</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QVBoxLayout" name="resultsVBox"/>
-       </item>
-      </layout>
-     </widget>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
     </widget>
    </item>
    <item>

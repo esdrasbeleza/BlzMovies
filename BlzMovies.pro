@@ -30,20 +30,17 @@ SOURCES += main.cpp mainwindow.cpp \
     randommovie.cpp \
     searchmovie.cpp \
     searchwindow.cpp \
-    mainwidget.cpp \
-    searchresultitem.cpp
+    mainwidget.cpp
 HEADERS += mainwindow.h \
     movie.h \
     randommovie.h \
     searchmovie.h \
     searchwindow.h \
-    mainwidget.h \
-    searchresultitem.h
+    mainwidget.h
 FORMS += mainwindow.ui \
     details.ui \
     searchwindow.ui \
-    mainwidget.ui \
-    searchresultitem.ui
+    mainwidget.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
