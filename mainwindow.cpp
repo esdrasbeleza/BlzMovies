@@ -1,17 +1,58 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "randommovie.h"
+#include "searchmovie.h"
+#include "searchwindow.h"
 
 #include <QtCore/QCoreApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    qDebug("Constructor");
     ui->setupUi(this);
+    ui->randomMovieTitleLabel->setVisible(false);
+    ui->fetchingRandomMovieInfoProgressBar->setVisible(false);
+    ui->randomMovieImage->setVisible(false);
+
+    populateSearchComboBox();
+    fetchInformationAboutTheLastMovie();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::populateSearchComboBox() {
+    ui->searchOptionsCombobox->addItem("Movie", 1);
+    ui->searchOptionsCombobox->addItem("Person", 2); // TODO: use constants of a Search class
+    ui->searchOptionsCombobox->setCurrentIndex(0);
+}
+
+void MainWindow::fetchInformationAboutTheLastMovie() {
+    RandomMovie *randomMovie = new RandomMovie(this);
+    randomMovie->fetchARandomMovie();
+    showProgressBar();
+    connect(randomMovie, SIGNAL(movieInfoAvailable(Movie*)), SLOT(showMovieInfo(Movie*)));
+}
+
+void MainWindow::showProgressBar() {
+    ui->fetchingRandomMovieInfoProgressBar->setVisible(true);
+}
+
+void MainWindow::hideProgressBar() {
+    ui->fetchingRandomMovieInfoProgressBar->setVisible(true);
+}
+
+void MainWindow::showMovieInfo(Movie *movie) {
+    showMoviePoster(movie);
+    showMovieName(movie);
+}
+
+void MainWindow::showMoviePoster(Movie *movie) {
+    QPixmap *image = new QPixmap();
+    ui->randomMovieImage->setPixmap(movie->getPoster());
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)
@@ -66,4 +107,29 @@ void MainWindow::showExpanded()
 #else
     show();
 #endif
+}
+
+void MainWindow::showMovieName(Movie *movie) {
+    ui->randomMovieTitleLabel->setVisible(true);
+    ui->randomMovieTitleLabel->setText(movie->getName());
+}
+
+void MainWindow::on_submitSearchButton_clicked()
+{
+    QString termsToSearch = ui->searchTextBox->text();
+
+    SearchWindow *searchWindow = new SearchWindow(this);
+    // TODO: show feedback
+
+    if (ui->searchOptionsCombobox->currentIndex() == 1) {
+        SearchMovie *searchMovie = new SearchMovie(termsToSearch);
+        searchMovie->search();
+
+        connect(searchMovie, SIGNAL(hasResults(QList<Movie*>)), searchWindow, SLOT(addResultItems(QList<Movie*>)));
+    }
+    else {
+
+    }
+
+    searchWindow->showExpanded();
 }

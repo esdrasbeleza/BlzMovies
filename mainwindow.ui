@@ -30,14 +30,14 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-10</y>
          <width>289</width>
-         <height>215</height>
+         <height>203</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QLineEdit" name="searchTextBox">
           <property name="placeholderText">
            <string>Put here a movie or person to search</string>
           </property>
@@ -46,10 +46,10 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="QComboBox" name="searchOptionsCombobox"/>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="submitSearchButton">
             <property name="text">
              <string>Search</string>
             </property>
@@ -65,14 +65,44 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="randomMovieLabel">
           <property name="text">
-           <string>Last movie:</string>
+           <string>Random movie:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QGraphicsView" name="graphicsView"/>
+         <widget class="QProgressBar" name="fetchingRandomMovieInfoProgressBar">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="maximum">
+           <number>0</number>
+          </property>
+          <property name="value">
+           <number>-1</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="randomMovieImage">
+          <property name="text">
+           <string>MovieImage</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="randomMovieTitleLabel">
+          <property name="text">
+           <string>Last movie title</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

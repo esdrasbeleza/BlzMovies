@@ -22,14 +22,31 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # CONFIG += mobility
 # MOBILITY +=
 
-SOURCES += main.cpp mainwindow.cpp
-HEADERS += mainwindow.h
+QT += network \
+      xml \
+      xmlpatterns
+SOURCES += main.cpp mainwindow.cpp \
+    movie.cpp \
+    randommovie.cpp \
+    searchmovie.cpp \
+    searchresultlistitem.cpp \
+    searchwindow.cpp
+HEADERS += mainwindow.h \
+    movie.h \
+    randommovie.h \
+    searchmovie.h \
+    searchresultlistitem.h \
+    searchwindow.h
 FORMS += mainwindow.ui \
     result_item.ui \
-    result_list.ui \
     search_results.ui \
-    details.ui
+    details.ui \
+    searchwindow.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
 qtcAddDeployment()
+
+DEFINES += THEMOVIEDB_KEY=\\\"8b0246355e819cf5dc82d9c1c4b27227\\\"
+
+OTHER_FILES +=

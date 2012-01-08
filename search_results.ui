@@ -39,9 +39,19 @@
           </widget>
          </item>
          <item>
-          <widget class="QListWidget" name="listWidget"/>
+          <widget class="QListWidget" name="resultListWidget"/>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="noMoviesFoundLabel">
+         <property name="text">
+          <string>No movies were found.</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
