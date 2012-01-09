@@ -4,6 +4,7 @@
 #include "moviedetailswidget.h"
 
 #include <QAction>
+#include <QStackedWidget>
 
 WindowWithSearchResults::WindowWithSearchResults(QWidget *parent) :
     QWidget(parent),
@@ -14,7 +15,7 @@ WindowWithSearchResults::WindowWithSearchResults(QWidget *parent) :
 
     QAction *backToMainScreenAction = new QAction("Back", this);
     backToMainScreenAction->setSoftKeyRole(QAction::NegativeSoftKey);
-    connect(backToMainScreenAction, SIGNAL(triggered()), SLOT(deleteLater()));
+    connect(backToMainScreenAction, SIGNAL(triggered()), SLOT(removeWidget()));
     addAction(backToMainScreenAction);
 }
 
@@ -49,6 +50,8 @@ void WindowWithSearchResults::setResults(QList<Movie> movies) {
     ui->progressContainer->setVisible(false);
 
     if (movies.size() > 0) {
+        ui->listWidget->setCurrentRow(0);
+        ui->listWidget->setFocus();
         addSelectResultAction();
     }
 }
@@ -67,13 +70,18 @@ void WindowWithSearchResults::on_listWidget_itemActivated(QListWidgetItem *item)
 
 void WindowWithSearchResults::showDetailsAboutTheCurrentItem() {
     Movie movie = results.at(ui->listWidget->currentRow());
-    MovieDetailsWidget *movieDetailsWidget = new MovieDetailsWidget(&movie, this);
+    MovieDetailsWidget *movieDetailsWidget = new MovieDetailsWidget(&movie, (QStackedWidget*) parent());
 
-    movieDetailsWidget->setMaximumSize(window()->width(), window()->height());
-    movieDetailsWidget->setAutoFillBackground(true);
-    movieDetailsWidget->showMaximized();
-    movieDetailsWidget->activateWindow();
-    movieDetailsWidget->raise();
-    movieDetailsWidget->setFocus(Qt::OtherFocusReason);
+    /*
+     * Shows the widget that will show the results
+     */
+    QStackedWidget *stackedWidget = (QStackedWidget*) parent();
+    stackedWidget->addWidget(movieDetailsWidget);
+    stackedWidget->setCurrentWidget(movieDetailsWidget);
+}
 
+void WindowWithSearchResults::removeWidget() {
+    QStackedWidget *stackedWidget = (QStackedWidget*) parent();
+    stackedWidget->removeWidget(this);
+    this->deleteLater();
 }

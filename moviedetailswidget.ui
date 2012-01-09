@@ -14,46 +14,25 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="sizeConstraint">
-    <enum>QLayout::SetDefaultConstraint</enum>
-   </property>
-   <property name="margin">
-    <number>0</number>
-   </property>
    <item>
     <widget class="QScrollArea" name="scrollArea">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="widgetResizable">
       <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
      </property>
      <widget class="QWidget" name="scrollAreaWidgetContents">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>398</width>
-        <height>298</height>
+        <width>374</width>
+        <height>274</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="title">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="font">
             <font>
              <weight>75</weight>
@@ -63,19 +42,10 @@
            <property name="text">
             <string>Title</string>
            </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="year">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Year</string>
            </property>
@@ -89,7 +59,7 @@
        <item>
         <widget class="QLabel" name="moviePoster">
          <property name="text">
-          <string>Movie poster</string>
+          <string>Image</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -99,7 +69,7 @@
        <item>
         <widget class="QLabel" name="plot">
          <property name="text">
-          <string>Plot or description</string>
+          <string>Summary</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -112,6 +82,9 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>scrollArea</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

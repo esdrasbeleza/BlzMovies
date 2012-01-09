@@ -3,11 +3,14 @@
 #include "searchmovie.h"
 #include "windowwithsearchresults.h"
 
+#include <QStackedWidget>
+
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWidget)
 {
     ui->setupUi(this);
+    ui->searchTextBox->setFocus();
 }
 
 MainWidget::~MainWidget()
@@ -21,7 +24,7 @@ void MainWidget::on_submitSearchButton_clicked() {
     /*
      * The widget that will contain the results
      */
-    WindowWithSearchResults *windowWithSearchResults = new WindowWithSearchResults(this);
+    WindowWithSearchResults *windowWithSearchResults = new WindowWithSearchResults((QWidget*)parent());
 
     /*
      * Call the class that looks for the movie
@@ -38,10 +41,8 @@ void MainWidget::on_submitSearchButton_clicked() {
     /*
      * Shows the widget that will show the results
      */
-    windowWithSearchResults->setMaximumSize(window()->width(), window()->height());
-    windowWithSearchResults->showMaximized();
-    windowWithSearchResults->activateWindow();
-    windowWithSearchResults->raise();
-    windowWithSearchResults->setAutoFillBackground(true);
+    QStackedWidget *stackedWidget = (QStackedWidget*) parent();
+    stackedWidget->addWidget(windowWithSearchResults);
+    stackedWidget->setCurrentWidget(windowWithSearchResults);
 }
 

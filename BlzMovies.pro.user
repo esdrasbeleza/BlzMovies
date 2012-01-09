@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.0, 2012-01-09T05:01:55. -->
+<!-- Written by Qt Creator 2.4.0, 2012-01-09T06:55:41. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">0</value>
+  <value type="int">1</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -268,16 +268,16 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteCompiler.BuildStep</value>
       <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibrary">false</value>
       <value type="bool" key="QtProjectManager.QMakeBuildStep.LinkQmlDebuggingLibraryAuto">true</value>
-      <value type="QString" key="QtProjectManager.QMakeBuildStep.QMakeArguments">-unix CONFIG+=maemo5 -spec linux-g++-maemo5 </value>
+      <value type="QString" key="QtProjectManager.QMakeBuildStep.QMakeArguments">-spec symbian-sbsv2</value>
       <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">false</value>
       <value type="QString" key="RemoteCompiler.BuildStep.CertFile"></value>
       <value type="QString" key="RemoteCompiler.BuildStep.CertKeyFile"></value>
       <value type="QString" key="RemoteCompiler.BuildStep.CertKeyPass"></value>
-      <value type="int" key="RemoteCompiler.BuildStep.PkgOpt">1</value>
+      <value type="int" key="RemoteCompiler.BuildStep.PkgOpt">0</value>
       <value type="int" key="RemoteCompiler.BuildStep.PostOp">1</value>
-      <value type="QString" key="RemoteCompiler.BuildStep.QtVersion">4_7_0_m1_0_2</value>
-      <value type="int" key="RemoteCompiler.BuildStep.SisOpt">1</value>
-      <value type="QString" key="RemoteCompiler.BuildStep.Target">maemo5</value>
+      <value type="QString" key="RemoteCompiler.BuildStep.QtVersion">4_7_2_m1_1_1</value>
+      <value type="int" key="RemoteCompiler.BuildStep.SisOpt">0</value>
+      <value type="QString" key="RemoteCompiler.BuildStep.Target">s60_5_0</value>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>

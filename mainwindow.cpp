@@ -7,8 +7,22 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    MainWidget *mainWidget = new MainWidget(this);
-    setCentralWidget(mainWidget);
+    stackedWidget = new QStackedWidget(this);
+
+    MainWidget *mainWidget = new MainWidget(stackedWidget);
+    stackedWidget->addWidget(mainWidget);
+    stackedWidget->setCurrentWidget(mainWidget);
+
+    connect(stackedWidget, SIGNAL(currentChanged(int)), SLOT(updateActions()));
+    connect(stackedWidget, SIGNAL(widgetRemoved(int)), SLOT(updateActions()));
+    setCentralWidget(stackedWidget);
+}
+
+void MainWindow::updateActions() {
+    qDebug("Updating main window actions");
+    QWidget *currentWidget = stackedWidget->currentWidget();
+    menuBar()->clear();
+    menuBar()->addActions(currentWidget->actions());
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)

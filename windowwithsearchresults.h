@@ -27,6 +27,7 @@ public slots:
 private slots:
     void on_listWidget_itemActivated(QListWidgetItem *item);
     void showDetailsAboutTheCurrentItem();
+    void removeWidget();
 
 private:
     Ui::SearchWindow *ui;

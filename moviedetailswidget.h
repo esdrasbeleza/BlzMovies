@@ -28,6 +28,7 @@ private:
 
 private slots:
     void setPosterImage(QPixmap pixmap);
+    void removeWidget();
 };
 
 #endif // MOVIEDETAILSWIDGET_H

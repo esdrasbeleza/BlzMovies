@@ -21,6 +21,11 @@ public:
 
     void showExpanded();
 
+private:
+    QStackedWidget *stackedWidget;
+
+private slots:
+    void updateActions();
 
 };
 

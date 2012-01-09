@@ -3,20 +3,23 @@
 #include "pictureloader.h"
 
 #include <QAction>
+#include <QStackedWidget>
 
 MovieDetailsWidget::MovieDetailsWidget(Movie *movie, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MovieDetailsWidget)
 {
     ui->setupUi(this);
+    ui->scrollArea->setFocus();
+
     this->movie = movie;
 
     /*
      * Good function names are better than comments.
      */
-    createMenuOptions();
     populateData();
     tryToFetchPoster();
+    addMenuActions();
 }
 
 MovieDetailsWidget::~MovieDetailsWidget()
@@ -37,9 +40,9 @@ void MovieDetailsWidget::setPosterImage(QPixmap pixmap) {
 }
 
 void MovieDetailsWidget::addMenuActions() {
-    QAction *backToPreviousScreenAction = new QAction("Results", this);
+    QAction *backToPreviousScreenAction = new QAction("Back", this);
     backToPreviousScreenAction->setSoftKeyRole(QAction::NegativeSoftKey);
-    connect(backToPreviousScreenAction, SIGNAL(triggered()), SLOT(deleteLater()));
+    connect(backToPreviousScreenAction, SIGNAL(triggered()), SLOT(removeWidget()));
     addAction(backToPreviousScreenAction);
 }
 
@@ -49,10 +52,9 @@ void MovieDetailsWidget::populateData() {
     ui->plot->setText(movie->getOverview());
 }
 
-void MovieDetailsWidget::createMenuOptions() {
-    QAction *backAction = new QAction("Close", this);
-    backAction->setSoftKeyRole(QAction::NegativeSoftKey);
-    connect(backAction, SIGNAL(triggered()), SLOT(close()));
-    addAction(backAction);
+void MovieDetailsWidget::removeWidget() {
+    QStackedWidget *stackedWidget = (QStackedWidget*) parent();
+    stackedWidget->removeWidget(this);
+    this->deleteLater();
 }
 
