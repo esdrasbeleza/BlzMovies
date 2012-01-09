@@ -30,19 +30,19 @@ QT += network \
 SOURCES += main.cpp mainwindow.cpp \
     movie.cpp \
     searchmovie.cpp \
-    searchwindow.cpp \
     mainwidget.cpp \
     pictureloader.cpp \
     searchresult.cpp \
-    moviedetailswidget.cpp
+    moviedetailswidget.cpp \
+    windowwithsearchresults.cpp
 HEADERS += mainwindow.h \
     movie.h \
     searchmovie.h \
-    searchwindow.h \
     mainwidget.h \
     pictureloader.h \
     searchresult.h \
-    moviedetailswidget.h
+    moviedetailswidget.h \
+    windowwithsearchresults.h
 FORMS += mainwindow.ui \
     searchwindow.ui \
     mainwidget.ui \

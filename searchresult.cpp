@@ -27,6 +27,10 @@ void SearchResult::fetchIcon() {
     }
 }
 
+/*
+ * Set a icon of a QListWidgetItem.
+ * It must be called - obviously - when we have a pixmap.
+ */
 void SearchResult::setIconForItem(QPixmap pixmap) {
     QIcon icon(pixmap);
     listItem->setIcon(icon);

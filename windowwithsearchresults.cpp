@@ -1,11 +1,11 @@
-#include "searchwindow.h"
+#include "windowwithsearchresults.h"
 #include "ui_searchwindow.h"
 #include "searchresult.h"
 #include "moviedetailswidget.h"
 
 #include <QAction>
 
-SearchWindow::SearchWindow(QWidget *parent) :
+WindowWithSearchResults::WindowWithSearchResults(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SearchWindow)
 {
@@ -18,24 +18,24 @@ SearchWindow::SearchWindow(QWidget *parent) :
     addAction(backToMainScreenAction);
 }
 
-void SearchWindow::addSelectResultAction() {
+void WindowWithSearchResults::addSelectResultAction() {
     QAction *selectResultAction = new QAction("Details", this);
     selectResultAction->setSoftKeyRole(QAction::PositiveSoftKey);
     connect(selectResultAction, SIGNAL(triggered()), SLOT(showDetailsAboutTheCurrentItem()));
     addAction(selectResultAction);
 }
 
-SearchWindow::~SearchWindow()
+WindowWithSearchResults::~WindowWithSearchResults()
 {
     delete ui;
 }
 
-void SearchWindow::setWidgetsInitialState() {
+void WindowWithSearchResults::setWidgetsInitialState() {
     ui->listWidget->setVisible(false);
     ui->noResultsLabel->setVisible(false);
 }
 
-void SearchWindow::setResults(QList<Movie> movies) {
+void WindowWithSearchResults::setResults(QList<Movie> movies) {
     this->results = movies;
 
     foreach (Movie movie, movies) {
@@ -53,19 +53,19 @@ void SearchWindow::setResults(QList<Movie> movies) {
     }
 }
 
-void SearchWindow::showNoResultsFound() {
+void WindowWithSearchResults::showNoResultsFound() {
     ui->progressContainer->setVisible(false);
     ui->listWidget->setVisible(false);
     ui->noResultsLabel->setVisible(true);
 }
 
 
-void SearchWindow::on_listWidget_itemActivated(QListWidgetItem *item)
+void WindowWithSearchResults::on_listWidget_itemActivated(QListWidgetItem *item)
 {
     showDetailsAboutTheCurrentItem();
 }
 
-void SearchWindow::showDetailsAboutTheCurrentItem() {
+void WindowWithSearchResults::showDetailsAboutTheCurrentItem() {
     Movie movie = results.at(ui->listWidget->currentRow());
     MovieDetailsWidget *movieDetailsWidget = new MovieDetailsWidget(&movie, this);
 

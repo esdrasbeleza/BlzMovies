@@ -10,6 +10,9 @@ SearchMovie::SearchMovie(QString movieToSearch, QObject *parent) :
     url = QUrl("http://api.themoviedb.org/2.1/Movie.search/en/xml/" + QString(THEMOVIEDB_KEY) + "/" + QUrl::toPercentEncoding(movieToSearch.trimmed()));
 }
 
+/*
+ * Search for a movie. When we have a result, the readReply slot is called.
+ */
 void SearchMovie::search() {
     qDebug("Looking for " + url.toString().toUtf8());
 
@@ -21,6 +24,9 @@ void SearchMovie::search() {
     connect(networkAccessManager, SIGNAL(finished(QNetworkReply*)), SLOT(readReply(QNetworkReply*)));
 }
 
+/*
+ * Read the reply. If we have results, it calls parseReply.
+ */
 void SearchMovie::readReply(QNetworkReply *reply) {
     replyString = reply->readAll();
 
@@ -36,6 +42,9 @@ void SearchMovie::readReply(QNetworkReply *reply) {
     }
 }
 
+/*
+ * Parses the XML response.
+ */
 void SearchMovie::parseReply() {
     QXmlQuery query;
     query.setFocus(replyString);
@@ -78,6 +87,9 @@ void SearchMovie::parseReply() {
         query.evaluateTo(&posterUrlXml);
         posterUrl = obtainUrlFromImageTag(posterUrlXml);
 
+        /*
+         * Creates a new Movie Object and store the result
+         */
         Movie newMovie(theMdbId.toInt(), name.trimmed());
         newMovie.setImdbId(imdbId.trimmed());
         newMovie.setOverview(overview.trimmed());
@@ -97,6 +109,10 @@ void SearchMovie::parseReply() {
     emit hasResults(movieList);
 }
 
+/*
+ * Since we have URLs being removed from tags two times, it
+ * was better to create this function to help with this task.
+ */
 QUrl SearchMovie::obtainUrlFromImageTag(QString imageTag) {
     QDomDocument doc;
     doc.setContent(imageTag);

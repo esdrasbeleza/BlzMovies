@@ -11,6 +11,9 @@ MovieDetailsWidget::MovieDetailsWidget(Movie *movie, QWidget *parent) :
     ui->setupUi(this);
     this->movie = movie;
 
+    /*
+     * Good function names are better than comments.
+     */
     createMenuOptions();
     populateData();
     tryToFetchPoster();

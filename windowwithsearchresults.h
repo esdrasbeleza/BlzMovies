@@ -1,5 +1,5 @@
-#ifndef SEARCHWINDOW_H
-#define SEARCHWINDOW_H
+#ifndef WINDOWWITHSEARCHRESULTS_H
+#define WINDOWWITHSEARCHRESULTS_H
 
 #include <QWidget>
 #include <QPixmap>
@@ -11,13 +11,13 @@ namespace Ui {
 class SearchWindow;
 }
 
-class SearchWindow : public QWidget
+class WindowWithSearchResults : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit SearchWindow(QWidget *parent);
-    ~SearchWindow();
+    explicit WindowWithSearchResults(QWidget *parent);
+    ~WindowWithSearchResults();
     void showExpanded();
 
 public slots:
@@ -36,4 +36,4 @@ private:
 
 };
 
-#endif // SEARCHWINDOW_H
+#endif // WINDOWWITHSEARCHRESULTS_H

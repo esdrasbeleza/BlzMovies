@@ -1,7 +1,7 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 #include "searchmovie.h"
-#include "searchwindow.h"
+#include "windowwithsearchresults.h"
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
@@ -18,18 +18,30 @@ MainWidget::~MainWidget()
 void MainWidget::on_submitSearchButton_clicked() {
     QString termsToSearch = ui->searchTextBox->text();
 
-    SearchWindow *searchWindow = new SearchWindow(this);
+    /*
+     * The widget that will contain the results
+     */
+    WindowWithSearchResults *windowWithSearchResults = new WindowWithSearchResults(this);
 
+    /*
+     * Call the class that looks for the movie
+     */
     SearchMovie *searchMovie = new SearchMovie(termsToSearch);
     searchMovie->search();
 
-    connect(searchMovie, SIGNAL(hasResults(QList<Movie>)), searchWindow, SLOT(setResults(QList<Movie>)));
-    connect(searchMovie, SIGNAL(noResults()), searchWindow, SLOT(showNoResultsFound()));
+    /*
+     * When we get the results, show them in the widget created above
+     */
+    connect(searchMovie, SIGNAL(hasResults(QList<Movie>)), windowWithSearchResults, SLOT(setResults(QList<Movie>)));
+    connect(searchMovie, SIGNAL(noResults()), windowWithSearchResults, SLOT(showNoResultsFound()));
 
-    searchWindow->setMaximumSize(window()->width(), window()->height());
-    searchWindow->showMaximized();
-    searchWindow->activateWindow();
-    searchWindow->raise();
-    searchWindow->setAutoFillBackground(true);
+    /*
+     * Shows the widget that will show the results
+     */
+    windowWithSearchResults->setMaximumSize(window()->width(), window()->height());
+    windowWithSearchResults->showMaximized();
+    windowWithSearchResults->activateWindow();
+    windowWithSearchResults->raise();
+    windowWithSearchResults->setAutoFillBackground(true);
 }
 
