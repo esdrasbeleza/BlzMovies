@@ -1,4 +1,6 @@
 #include "searchmovie.h"
+#include "themoviedbkey.h"
+
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>

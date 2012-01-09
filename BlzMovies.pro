@@ -42,7 +42,8 @@ HEADERS += mainwindow.h \
     pictureloader.h \
     searchresult.h \
     moviedetailswidget.h \
-    windowwithsearchresults.h
+    windowwithsearchresults.h \
+    themoviedbkey.h
 FORMS += mainwindow.ui \
     searchwindow.ui \
     mainwidget.ui \
@@ -51,8 +52,6 @@ FORMS += mainwindow.ui \
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
 qtcAddDeployment()
-
-DEFINES += THEMOVIEDB_KEY=\\\"8b0246355e819cf5dc82d9c1c4b27227\\\"
 
 OTHER_FILES +=
 
