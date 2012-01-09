@@ -11,11 +11,17 @@ It's a good example of how to make a Qt-based application for
 Symbian platform. You can see how to handle a widget stack,
 how to set the key-based screen shortcuts and more.
 
+Devices
+-------
+
+The binary file bin/BlzMovies.sis was tested successfully on
+a Nokia C7 device running Symbian Anna.
+
 Known bugs
 ----------
 
-I don't know why, but in the movie details I can't scroll.
-Looks like a problem with QScrollArea and Symbian. Maybe.
+Using Qt Simulator, the movie details can't be scrolled.
+Looks like a problem with QScrollArea, Simulator or Symbian.
 
 Extra credits
 -------------
