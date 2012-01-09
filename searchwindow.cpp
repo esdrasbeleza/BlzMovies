@@ -12,15 +12,17 @@ SearchWindow::SearchWindow(QWidget *parent) :
     ui->setupUi(this);
     setWidgetsInitialState();
 
-
-    QAction *selectResultAction = new QAction("Details", this);
-    selectResultAction->setSoftKeyRole(QAction::PositiveSoftKey);
-    addAction(selectResultAction);
-
     QAction *backToMainScreenAction = new QAction("Back", this);
     backToMainScreenAction->setSoftKeyRole(QAction::NegativeSoftKey);
-    connect(backToMainScreenAction, SIGNAL(triggered()), SLOT(close()));
+    connect(backToMainScreenAction, SIGNAL(triggered()), SLOT(deleteLater()));
     addAction(backToMainScreenAction);
+}
+
+void SearchWindow::addSelectResultAction() {
+    QAction *selectResultAction = new QAction("Details", this);
+    selectResultAction->setSoftKeyRole(QAction::PositiveSoftKey);
+    connect(selectResultAction, SIGNAL(triggered()), SLOT(showDetailsAboutTheCurrentItem()));
+    addAction(selectResultAction);
 }
 
 SearchWindow::~SearchWindow()
@@ -45,6 +47,10 @@ void SearchWindow::setResults(QList<Movie> movies) {
     ui->listWidget->setVisible(true);
     ui->noResultsLabel->setVisible(false);
     ui->progressContainer->setVisible(false);
+
+    if (movies.size() > 0) {
+        addSelectResultAction();
+    }
 }
 
 void SearchWindow::showNoResultsFound() {
@@ -56,7 +62,16 @@ void SearchWindow::showNoResultsFound() {
 
 void SearchWindow::on_listWidget_itemActivated(QListWidgetItem *item)
 {
+    showDetailsAboutTheCurrentItem();
+}
+
+void SearchWindow::showDetailsAboutTheCurrentItem() {
     Movie movie = results.at(ui->listWidget->currentRow());
     MovieDetailsWidget *movieDetailsWidget = new MovieDetailsWidget(&movie, this);
-    movieDetailsWidget->showFullScreen();
+
+    movieDetailsWidget->setMaximumSize(window()->width(), window()->height());
+    movieDetailsWidget->showMaximized();
+    movieDetailsWidget->raise();
+    movieDetailsWidget->activateWindow();
+    movieDetailsWidget->setAutoFillBackground(true);
 }

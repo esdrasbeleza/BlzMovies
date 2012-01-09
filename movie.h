@@ -1,9 +1,8 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
-
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
+#include <QString>
+#include <QUrl>
 #include <QPixmap>
 
 class Movie

@@ -13,13 +13,14 @@ class MovieDetailsWidget : public QWidget
     Q_OBJECT
     
 public:
-    explicit MovieDetailsWidget(Movie *movie, QWidget *parent = 0);
+    explicit MovieDetailsWidget(Movie *movie, QWidget *parent);
     ~MovieDetailsWidget();
     
 private:
     Ui::MovieDetailsWidget *ui;
     Movie *movie;
     void populateData();
+    void addMenuActions();
     void createMenuOptions();
     void makeButtonsWork();
 };

@@ -26,6 +26,10 @@ void MainWidget::on_submitSearchButton_clicked() {
     connect(searchMovie, SIGNAL(hasResults(QList<Movie>)), searchWindow, SLOT(setResults(QList<Movie>)));
     connect(searchMovie, SIGNAL(noResults()), searchWindow, SLOT(showNoResultsFound()));
 
-    emit createWidget(searchWindow);
+    searchWindow->setMaximumSize(window()->width(), window()->height());
+    searchWindow->showMaximized();
+    searchWindow->raise();
+    searchWindow->activateWindow();
+    searchWindow->setAutoFillBackground(true);
 }
 

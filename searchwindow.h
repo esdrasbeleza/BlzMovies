@@ -16,7 +16,7 @@ class SearchWindow : public QWidget
     Q_OBJECT
     
 public:
-    explicit SearchWindow(QWidget *parent = 0);
+    explicit SearchWindow(QWidget *parent);
     ~SearchWindow();
     void showExpanded();
 
@@ -26,10 +26,12 @@ public slots:
     
 private slots:
     void on_listWidget_itemActivated(QListWidgetItem *item);
+    void showDetailsAboutTheCurrentItem();
 
 private:
     Ui::SearchWindow *ui;
     void setWidgetsInitialState();
+    void addSelectResultAction();
     QList<Movie> results;
 
 };

@@ -65,6 +65,7 @@ void SearchMovie::parseReply() {
 
         query.setQuery(elementQuery + "/overview/text()");
         query.evaluateTo(&overview);
+        qDebug("overview: " + overview.trimmed().toUtf8());
 
         query.setQuery(elementQuery + "/released/text()");
         query.evaluateTo(&released);
@@ -80,6 +81,9 @@ void SearchMovie::parseReply() {
         Movie newMovie(theMdbId.toInt(), name.trimmed());
         newMovie.setImdbId(imdbId.trimmed());
         newMovie.setOverview(overview.trimmed());
+
+        qDebug("overview 2: " + newMovie.getOverview().toUtf8());
+
         newMovie.setYear(released.split("-").at(0).toInt());
         if (posterUrl.isValid()) {
             newMovie.setPosterUrl(posterUrl);

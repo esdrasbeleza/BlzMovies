@@ -2,6 +2,7 @@
 #define MAINWIDGET_H
 
 #include <QWidget>
+#include <QStackedWidget>
 
 namespace Ui {
 class MainWidget;
@@ -12,7 +13,7 @@ class MainWidget : public QWidget
     Q_OBJECT
     
 public:
-    explicit MainWidget(QWidget *parent = 0);
+    explicit MainWidget(QWidget *parent);
     ~MainWidget();
     
 signals:
