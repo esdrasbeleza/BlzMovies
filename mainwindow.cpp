@@ -2,6 +2,7 @@
 #include "mainwidget.h"
 
 #include <QtCore/QCoreApplication>
+#include <QMenuBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(stackedWidget);
 
     connect(mainWidget, SIGNAL(createWidget(QWidget*)), SLOT(addWidgetToStack(QWidget*)));
+    connect(stackedWidget, SIGNAL(currentChanged(int)), SLOT(updateActions()));
 }
 
 void MainWindow::addWidgetToStack(QWidget *widget) {
@@ -20,9 +22,14 @@ void MainWindow::addWidgetToStack(QWidget *widget) {
     stackedWidget->setCurrentWidget(widget);
 }
 
-
-MainWindow::~MainWindow()
-{
+void MainWindow::updateActions() {
+    qDebug("updating menus");
+    menuBar()->clear();
+    QWidget *current = stackedWidget->currentWidget();
+    qDebug("actions: " + QString::number(current->actions().count()).toUtf8());
+    for (int i = 0; i < current->actions().count(); i++) {
+        menuBar()->addAction(current->actions().at(i));
+    }
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)
@@ -69,14 +76,15 @@ void MainWindow::setOrientation(ScreenOrientation orientation)
 }
 
 void MainWindow::showExpanded()
-{
+{  
 #if defined(Q_OS_SYMBIAN) || defined(Q_WS_SIMULATOR)
-    showFullScreen();
+    showMaximized();
 #elif defined(Q_WS_MAEMO_5)
     showMaximized();
 #else
     show();
 #endif
 }
+
 
 

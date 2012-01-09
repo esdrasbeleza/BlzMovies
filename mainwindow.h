@@ -15,7 +15,6 @@ public:
     };
 
     explicit MainWindow(QWidget *parent = 0);
-    virtual ~MainWindow();
 
     // Note that this will only have an effect on Symbian and Fremantle.
     void setOrientation(ScreenOrientation orientation);
@@ -24,6 +23,7 @@ public:
 
 private slots:
     void addWidgetToStack(QWidget *widget);
+    void updateActions();
 
 private:
     QStackedWidget *stackedWidget;

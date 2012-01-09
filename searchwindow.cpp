@@ -1,8 +1,9 @@
 #include "searchwindow.h"
 #include "ui_searchwindow.h"
 #include "searchresult.h"
+#include "moviedetailswidget.h"
 
-#include <QListWidgetItem>
+#include <QAction>
 
 SearchWindow::SearchWindow(QWidget *parent) :
     QWidget(parent),
@@ -10,6 +11,16 @@ SearchWindow::SearchWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWidgetsInitialState();
+
+
+    QAction *selectResultAction = new QAction("Details", this);
+    selectResultAction->setSoftKeyRole(QAction::PositiveSoftKey);
+    addAction(selectResultAction);
+
+    QAction *backToMainScreenAction = new QAction("Back", this);
+    backToMainScreenAction->setSoftKeyRole(QAction::NegativeSoftKey);
+    connect(backToMainScreenAction, SIGNAL(triggered()), SLOT(close()));
+    addAction(backToMainScreenAction);
 }
 
 SearchWindow::~SearchWindow()
@@ -23,6 +34,8 @@ void SearchWindow::setWidgetsInitialState() {
 }
 
 void SearchWindow::setResults(QList<Movie> movies) {
+    this->results = movies;
+
     foreach (Movie movie, movies) {
         SearchResult *searchResult = new SearchResult(&movie, ui->listWidget, this);
         ui->listWidget->addItem(searchResult->getListItem());
@@ -40,7 +53,10 @@ void SearchWindow::showNoResultsFound() {
     ui->noResultsLabel->setVisible(true);
 }
 
-void SearchWindow::on_listWidget_clicked(const QModelIndex &index)
+
+void SearchWindow::on_listWidget_itemActivated(QListWidgetItem *item)
 {
-    qDebug("Clicked!");
+    Movie movie = results.at(ui->listWidget->currentRow());
+    MovieDetailsWidget *movieDetailsWidget = new MovieDetailsWidget(&movie, this);
+    movieDetailsWidget->showFullScreen();
 }

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPixmap>
-#include <QModelIndex>
+#include <QListWidgetItem>
 
 #include "movie.h"
 
@@ -25,11 +25,12 @@ public slots:
     void showNoResultsFound();
     
 private slots:
-    void on_listWidget_clicked(const QModelIndex &index);
+    void on_listWidget_itemActivated(QListWidgetItem *item);
 
 private:
     Ui::SearchWindow *ui;
     void setWidgetsInitialState();
+    QList<Movie> results;
 
 };
 

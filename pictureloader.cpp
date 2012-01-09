@@ -9,19 +9,19 @@ PictureLoader::PictureLoader(QUrl url, QObject *parent) :
     connect(manager, SIGNAL(finished(QNetworkReply*)), SLOT(loadPictureData(QNetworkReply*)));
 
     QNetworkRequest request(url);
-    qDebug("Download " + url.toString().toUtf8());
     manager->get(request);
 }
 
 void PictureLoader::loadPictureData(QNetworkReply *reply) {
     if (reply->error() != QNetworkReply::NoError) {
-        qDebug("Erro!!");
+        qDebug("Network error; show some feedback");
+        // TODO
     }
 
     const QByteArray data(reply->readAll());
 
     if (data.isEmpty()) {
-        qDebug("Sem dados!");
+        qDebug("No data!");
     }
 
     QPixmap pixmap;

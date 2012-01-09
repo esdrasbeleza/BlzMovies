@@ -4,6 +4,8 @@
 # dir1.source = mydir
 DEPLOYMENTFOLDERS = # file1 dir1
 
+TEMPLATE = app
+
 symbian:TARGET.UID3 = 0xE346E126
 
 # Smart Installer package's UID
@@ -19,7 +21,7 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # If your application uses the Qt Mobility libraries, uncomment
 # the following lines and add the respective components to the 
 # MOBILITY variable. 
-# CONFIG += mobility
+#CONFIG += mobility
 # MOBILITY +=
 
 QT += network \
@@ -31,18 +33,20 @@ SOURCES += main.cpp mainwindow.cpp \
     searchwindow.cpp \
     mainwidget.cpp \
     pictureloader.cpp \
-    searchresult.cpp
+    searchresult.cpp \
+    moviedetailswidget.cpp
 HEADERS += mainwindow.h \
     movie.h \
     searchmovie.h \
     searchwindow.h \
     mainwidget.h \
     pictureloader.h \
-    searchresult.h
+    searchresult.h \
+    moviedetailswidget.h
 FORMS += mainwindow.ui \
-    details.ui \
     searchwindow.ui \
-    mainwidget.ui
+    mainwidget.ui \
+    moviedetailswidget.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -54,3 +58,5 @@ OTHER_FILES +=
 
 RESOURCES += \
     resources.qrc
+
+

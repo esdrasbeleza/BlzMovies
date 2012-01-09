@@ -55,7 +55,7 @@
        <item>
         <widget class="QLineEdit" name="searchTextBox">
          <property name="placeholderText">
-          <string>Put here a movie or person to search</string>
+          <string>Put here a movie to search!</string>
          </property>
         </widget>
        </item>
@@ -64,9 +64,6 @@
          <property name="sizeConstraint">
           <enum>QLayout::SetMinimumSize</enum>
          </property>
-         <item>
-          <widget class="QComboBox" name="searchOptionsCombobox"/>
-         </item>
          <item>
           <widget class="QPushButton" name="submitSearchButton">
            <property name="text">
