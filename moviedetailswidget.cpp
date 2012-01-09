@@ -8,15 +8,12 @@ MovieDetailsWidget::MovieDetailsWidget(Movie *movie, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MovieDetailsWidget)
 {
-    qDebug("Details!");
     ui->setupUi(this);
     this->movie = movie;
 
     createMenuOptions();
     populateData();
     tryToFetchPoster();
-    qDebug("Details end");
-
 }
 
 MovieDetailsWidget::~MovieDetailsWidget()
@@ -37,12 +34,13 @@ void MovieDetailsWidget::setPosterImage(QPixmap pixmap) {
 }
 
 void MovieDetailsWidget::addMenuActions() {
-    // TODO
+    QAction *backToPreviousScreenAction = new QAction("Results", this);
+    backToPreviousScreenAction->setSoftKeyRole(QAction::NegativeSoftKey);
+    connect(backToPreviousScreenAction, SIGNAL(triggered()), SLOT(deleteLater()));
+    addAction(backToPreviousScreenAction);
 }
 
 void MovieDetailsWidget::populateData() {
-
-
     ui->title->setText(movie->getName());
     ui->year->setText(QString::number(movie->getYear()));
     ui->plot->setText(movie->getOverview());

@@ -76,7 +76,6 @@ void SearchMovie::parseReply() {
 
         query.setQuery(elementQuery + "/images/image[@type=\"poster\" and @size=\"w154\"]");
         query.evaluateTo(&posterUrlXml);
-        qDebug("Poster: " + posterUrlXml.toUtf8());
         posterUrl = obtainUrlFromImageTag(posterUrlXml);
 
         Movie newMovie(theMdbId.toInt(), name.trimmed());

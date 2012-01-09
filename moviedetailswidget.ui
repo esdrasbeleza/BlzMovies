@@ -98,12 +98,6 @@
        </item>
        <item>
         <widget class="QLabel" name="plot">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="text">
           <string>Plot or description</string>
          </property>

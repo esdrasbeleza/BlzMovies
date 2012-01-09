@@ -70,8 +70,10 @@ void SearchWindow::showDetailsAboutTheCurrentItem() {
     MovieDetailsWidget *movieDetailsWidget = new MovieDetailsWidget(&movie, this);
 
     movieDetailsWidget->setMaximumSize(window()->width(), window()->height());
+    movieDetailsWidget->setAutoFillBackground(true);
     movieDetailsWidget->showMaximized();
     movieDetailsWidget->activateWindow();
     movieDetailsWidget->raise();
-    movieDetailsWidget->setAutoFillBackground(true);
+    movieDetailsWidget->setFocus(Qt::OtherFocusReason);
+
 }
