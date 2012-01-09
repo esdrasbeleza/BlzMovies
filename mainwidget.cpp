@@ -28,8 +28,8 @@ void MainWidget::on_submitSearchButton_clicked() {
 
     searchWindow->setMaximumSize(window()->width(), window()->height());
     searchWindow->showMaximized();
-    searchWindow->raise();
     searchWindow->activateWindow();
+    searchWindow->raise();
     searchWindow->setAutoFillBackground(true);
 }
 

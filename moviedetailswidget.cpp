@@ -1,5 +1,6 @@
 #include "moviedetailswidget.h"
 #include "ui_moviedetailswidget.h"
+#include "pictureloader.h"
 
 #include <QAction>
 
@@ -13,7 +14,7 @@ MovieDetailsWidget::MovieDetailsWidget(Movie *movie, QWidget *parent) :
 
     createMenuOptions();
     populateData();
-    makeButtonsWork();
+    tryToFetchPoster();
     qDebug("Details end");
 
 }
@@ -23,20 +24,28 @@ MovieDetailsWidget::~MovieDetailsWidget()
     delete ui;
 }
 
+void MovieDetailsWidget::tryToFetchPoster() {
+    QPixmap defaultIcon(":/icons/movie");
+    ui->moviePoster->setPixmap(defaultIcon);
+
+    PictureLoader *pictureLoader = new PictureLoader(movie->getPosterUrl());
+    connect(pictureLoader, SIGNAL(pictureReady(QPixmap)), SLOT(setPosterImage(QPixmap)));
+}
+
+void MovieDetailsWidget::setPosterImage(QPixmap pixmap) {
+    ui->moviePoster->setPixmap(pixmap);
+}
+
 void MovieDetailsWidget::addMenuActions() {
     // TODO
 }
 
-void MovieDetailsWidget::makeButtonsWork() {
-    // TODO
-}
-
 void MovieDetailsWidget::populateData() {
-    qDebug("Overview: " + movie->getOverview().toUtf8());
+
 
     ui->title->setText(movie->getName());
-    ui->moviePoster->setPixmap(movie->getPoster());
     ui->year->setText(QString::number(movie->getYear()));
+    ui->plot->setText(movie->getOverview());
 }
 
 void MovieDetailsWidget::createMenuOptions() {

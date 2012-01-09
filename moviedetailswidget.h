@@ -2,6 +2,8 @@
 #define MOVIEDETAILSWIDGET_H
 
 #include <QWidget>
+#include <QPixmap>
+
 #include "movie.h"
 
 namespace Ui {
@@ -22,7 +24,10 @@ private:
     void populateData();
     void addMenuActions();
     void createMenuOptions();
-    void makeButtonsWork();
+    void tryToFetchPoster();
+
+private slots:
+    void setPosterImage(QPixmap pixmap);
 };
 
 #endif // MOVIEDETAILSWIDGET_H

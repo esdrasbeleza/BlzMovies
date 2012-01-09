@@ -71,7 +71,7 @@ void SearchWindow::showDetailsAboutTheCurrentItem() {
 
     movieDetailsWidget->setMaximumSize(window()->width(), window()->height());
     movieDetailsWidget->showMaximized();
-    movieDetailsWidget->raise();
     movieDetailsWidget->activateWindow();
+    movieDetailsWidget->raise();
     movieDetailsWidget->setAutoFillBackground(true);
 }

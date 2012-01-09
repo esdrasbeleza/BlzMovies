@@ -1,6 +1,4 @@
 #include "movie.h"
-#include <QDomNode>
-#include <QXmlQuery>
 
 Movie::Movie(int id, QString name) {
     this->id = id;
@@ -32,7 +30,23 @@ QString Movie::getOverview() {
 }
 
 void Movie::setOverview(QString overView) {
-    this->overview = overview;
+    this->overview = overView;
+}
+
+QPixmap Movie::getThumbnail() {
+    return thumbnail;
+}
+
+void Movie::setThumbnail(QPixmap poster) {
+    this->thumbnail = poster;
+}
+
+QUrl Movie::getThumbnailUrl() {
+    return thumbnailUrl;
+}
+
+void Movie::setThumbnailUrl(QUrl thumbnailUrl) {
+    this->thumbnailUrl = thumbnailUrl;
 }
 
 QPixmap Movie::getPoster() {

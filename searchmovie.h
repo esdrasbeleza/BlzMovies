@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QList>
+#include <QXmlQuery>
 #include <QNetworkReply>
 
 #include "movie.h"
@@ -25,6 +26,7 @@ private:
     QList<Movie> movieList;
 
     void parseReply();
+    QUrl obtainUrlFromImageTag(QString imageTag);
 
 private slots:
     void readReply(QNetworkReply* reply);

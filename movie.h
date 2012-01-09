@@ -17,6 +17,8 @@ public:
     int getYear();
     QString getName();
     QString getOverview();
+    QUrl getThumbnailUrl();
+    QPixmap getThumbnail();
     QUrl getPosterUrl();
     QPixmap getPoster();
 
@@ -25,7 +27,9 @@ public:
     void setYear(int year);
     void setName(QString name);
     void setOverview(QString overview);
-    void setPosterUrl(QUrl url);
+    void setThumbnailUrl(QUrl thumbnailUrl);
+    void setThumbnail(QPixmap thumbnail);
+    void setPosterUrl(QUrl posterUrl);
     void setPoster(QPixmap poster);
 
 private:
@@ -34,10 +38,10 @@ private:
     QString imdbId;
     QString name;
     QString overview;
+    QUrl thumbnailUrl;
+    QPixmap thumbnail;
     QUrl posterUrl;
     QPixmap poster;
-
-
     
 };
 

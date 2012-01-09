@@ -21,8 +21,8 @@ QListWidgetItem* SearchResult::getListItem() {
 }
 
 void SearchResult::fetchIcon() {
-    if (movie->getPosterUrl().isValid()) {
-        pictureLoader = new PictureLoader(movie->getPosterUrl());
+    if (movie->getThumbnailUrl().isValid()) {
+        pictureLoader = new PictureLoader(movie->getThumbnailUrl());
         connect(pictureLoader, SIGNAL(pictureReady(QPixmap)), SLOT(setIconForItem(QPixmap)));
     }
 }
@@ -32,3 +32,4 @@ void SearchResult::setIconForItem(QPixmap pixmap) {
     listItem->setIcon(icon);
     pictureLoader->deleteLater();
 }
+
