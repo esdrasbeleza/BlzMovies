@@ -44,6 +44,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="errorLabel">
+     <property name="text">
+      <string>Network error! Please verify your connection.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="noResultsLabel">
      <property name="text">
       <string>No results found.</string>

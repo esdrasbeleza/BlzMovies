@@ -17,6 +17,7 @@ public:
     
 signals:
     void noResults();
+    void networkError();
     void hasResults(QList<Movie>);
 
 private:

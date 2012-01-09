@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPixmap>
+#include <QListWidget>
 #include <QListWidgetItem>
 
 #include "movie.h"
@@ -23,6 +24,7 @@ public:
 public slots:
     void setResults(QList<Movie> movies);
     void showNoResultsFound();
+    void showNetworkErrorLabel();
     
 private slots:
     void on_listWidget_itemActivated(QListWidgetItem *item);

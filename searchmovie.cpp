@@ -28,6 +28,10 @@ void SearchMovie::search() {
  * Read the reply. If we have results, it calls parseReply.
  */
 void SearchMovie::readReply(QNetworkReply *reply) {
+    if (reply->error() != QNetworkReply::NoError) {
+        emit networkError();
+        return;
+    }
     replyString = reply->readAll();
 
     QDomDocument xmlDom;

@@ -34,6 +34,7 @@ WindowWithSearchResults::~WindowWithSearchResults()
 void WindowWithSearchResults::setWidgetsInitialState() {
     ui->listWidget->setVisible(false);
     ui->noResultsLabel->setVisible(false);
+    ui->errorLabel->setVisible(false);
 }
 
 void WindowWithSearchResults::setResults(QList<Movie> movies) {
@@ -59,9 +60,18 @@ void WindowWithSearchResults::setResults(QList<Movie> movies) {
 void WindowWithSearchResults::showNoResultsFound() {
     ui->progressContainer->setVisible(false);
     ui->listWidget->setVisible(false);
+    ui->errorLabel->setVisible(false);
+
     ui->noResultsLabel->setVisible(true);
 }
 
+void WindowWithSearchResults::showNetworkErrorLabel() {
+    ui->progressContainer->setVisible(false);
+    ui->noResultsLabel->setVisible(false);
+    ui->listWidget->setVisible(false);
+
+    ui->errorLabel->setVisible(true);
+}
 
 void WindowWithSearchResults::on_listWidget_itemActivated(QListWidgetItem *item)
 {
